@@ -57,7 +57,12 @@
 #cards {
   height: 43rem;
   overflow: auto;
+  -ms-overflow-style: none; 
   margin-left: 2rem;
+}
+
+#cards::-webkit-scrollbar {
+    display: none;
 }
 
 .spacing {
