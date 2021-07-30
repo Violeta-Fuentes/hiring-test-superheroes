@@ -2,6 +2,7 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import style from "./Favorite.module.css";
 import heart from "../../assets/medium-heart/medium-heart.svg";
 import filledHeart from "../../assets/medium-filled-heart/medium-filled-heart.svg";
+import bigHeart from "../../assets/big-heart/big-heart.svg";
 import { useState } from "react";
 import { removeFavorite } from "../../actions";
 
@@ -44,9 +45,10 @@ export function Favorites() {
               ))}
             </div>
           ) : (
-            <div>
+            <div className={style.noHero}>
+              <img className={style.bigHeart} src={bigHeart} />
               <p className={style.color}>
-                You haven't liked any superheroes yet
+                You haven't liked any superheroes yet 
               </p>
             </div>
           )}
