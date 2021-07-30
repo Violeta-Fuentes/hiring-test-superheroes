@@ -3,6 +3,7 @@ import style from "./Favorite.module.css";
 import heart from "../../assets/medium-heart/medium-heart.svg";
 import filledHeart from "../../assets/medium-filled-heart/medium-filled-heart.svg";
 import bigHeart from "../../assets/big-heart/big-heart.svg";
+import fist from "../../assets/fist/fist.svg";
 import { useState } from "react";
 import { removeFavorite } from "../../actions";
 
@@ -40,6 +41,20 @@ export function Favorites() {
                   <th>
                     <h4 className={style.name}>{l.name}</h4>
                     <p id={style.realName}>Real Name: {l.realName}</p>
+                    <img className={style.fist} src={fist} />
+                    <span className={style.power}>
+                      {((100 *
+                        (l.powerstats.intelligence +
+                          l.powerstats.strength +
+                          l.powerstats.speed +
+                          l.powerstats.durability +
+                          l.powerstats.power +
+                          l.powerstats.combat)) %
+                        600) /
+                        100}
+                    </span>
+                    <span className={style.power}>/ 10</span>
+                    <img />
                   </th>
                 </div>
               ))}
@@ -48,7 +63,7 @@ export function Favorites() {
             <div className={style.noHero}>
               <img className={style.bigHeart} src={bigHeart} />
               <p className={style.color}>
-                You haven't liked any superheroes yet 
+                You haven't liked any superheroes yet
               </p>
             </div>
           )}

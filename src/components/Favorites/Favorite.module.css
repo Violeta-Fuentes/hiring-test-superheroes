@@ -99,3 +99,16 @@
 .bigHeart {
   margin-top: 2rem;
 }
+
+.power {
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  color: white;
+  margin-left: 0.5rem;
+}
+
+.fist {
+  margin-left: 0.5rem;
+}

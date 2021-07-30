@@ -6,6 +6,7 @@ import logo from "../../assets/logo/logo.svg";
 import { Favorites } from "../Favorites/Favorites";
 import { SearchHeroes } from "../SearchHeroes/SearchHeroes";
 import heart from "../../assets/medium-heart/medium-heart.svg";
+import fist from "../../assets/fist/fist.svg";
 import ContentLoader from "react-content-loader";
 
 export function AllSuperheroes() {
@@ -60,6 +61,7 @@ export function AllSuperheroes() {
                         name: s.name,
                         realName: s.biography.fullName,
                         img: s.images.sm,
+                        powerstats: s.powerstats,
                       })
                     )
                   }
@@ -70,6 +72,19 @@ export function AllSuperheroes() {
                   <th>
                     <h4 className={style.color}>{s.name}</h4>
                     <p id={style.realName}>Real Name: {s.biography.fullName}</p>
+                    <img className={style.fist} src={fist} />
+                    <span className={style.power}>
+                      {((100 *
+                        (s.powerstats.intelligence +
+                          s.powerstats.strength +
+                          s.powerstats.speed +
+                          s.powerstats.durability +
+                          s.powerstats.power +
+                          s.powerstats.combat)) %
+                        600) /
+                        100}
+                    </span>
+                    <span className={style.power}>/ 10</span>
                   </th>
                 </div>
               ))}

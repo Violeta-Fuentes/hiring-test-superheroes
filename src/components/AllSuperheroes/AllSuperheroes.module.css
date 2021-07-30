@@ -82,3 +82,16 @@
   background: #6a4dbc;
   border-radius: 32px;
 }
+
+.power {
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  color: white;
+  margin-left: 0.5rem;
+}
+
+.fist {
+  margin-left: 0.5rem;
+}
