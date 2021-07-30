@@ -40,7 +40,7 @@ export function AllSuperheroes() {
           </ContentLoader>
         </div>
       ) : (
-        <div>
+        <div id={style.background}>
           <img className="position-relative start-50 mt-5" src={logo} />
           <div className={style.separation}>
             <Favorites />

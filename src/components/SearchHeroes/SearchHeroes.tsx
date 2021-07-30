@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchHeroes } from "../../actions";
+import { getSuperheroes, searchHeroes } from "../../actions";
 import style from "./SearchHeroes.module.css";
 import search from "../../assets/search/search.svg";
+import cancel from "../../assets/cancel/cancel.svg";
 
 export function SearchHeroes() {
   const [superheroe, setSuperheroe] = useState("");
@@ -23,7 +24,13 @@ export function SearchHeroes() {
           placeholder="Search"
           type="text"
           value={superheroe}
+          id="searchbar"
           onChange={(e) => setSuperheroe(e.target.value)}
+        />
+        <img
+          onClick={() => dispatch(getSuperheroes())}
+          className={style.cancel}
+          src={cancel}
         />
       </form>
     </div>

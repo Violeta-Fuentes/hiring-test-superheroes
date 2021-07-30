@@ -3,6 +3,7 @@ import {
   REMOVE_FAVORITE,
   ADD_FAVORITE,
   SEARCH_HEROES,
+  FILTERED_HEROES,
 } from "../actions/index";
 
 const initialState = {
@@ -13,6 +14,9 @@ const initialState = {
 export interface IAction {
   id: number;
   name: string;
+  biography: {
+    fullName: string;
+  };
 }
 
 export default function rootReducer(state = initialState, action: any) {
@@ -38,7 +42,9 @@ export default function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         allSuperheroes: state.allSuperheroes.filter(
-          (a: IAction) => a.name.toLocaleLowerCase() === action.payload
+          (a: IAction) =>
+            a.name.toLocaleLowerCase() === action.payload ||
+            a.biography.fullName.toLocaleLowerCase() == action.payload
         ),
       };
     default:
