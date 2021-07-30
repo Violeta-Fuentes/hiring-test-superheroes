@@ -4,8 +4,8 @@ import heart from "../../assets/medium-heart/medium-heart.svg";
 import filledHeart from "../../assets/medium-filled-heart/medium-filled-heart.svg";
 import bigHeart from "../../assets/big-heart/big-heart.svg";
 import fist from "../../assets/fist/fist.svg";
-import { useState } from "react";
-import { removeFavorite } from "../../actions";
+import { useEffect, useState } from "react";
+import { getSuperheroes, removeFavorite } from "../../actions";
 
 export function Favorites() {
   const dispatch = useDispatch();
@@ -32,7 +32,10 @@ export function Favorites() {
             <div className="d-flex flex-wrap" id={style.margin}>
               {liked.map((l: any, i: number) => (
                 <div
-                  onClick={() => dispatch(removeFavorite(l.id))}
+                  onClick={() => {
+                    dispatch(removeFavorite(l.id));
+                    dispatch(getSuperheroes());
+                  }}
                   key={i}
                   className={style.container}
                 >
