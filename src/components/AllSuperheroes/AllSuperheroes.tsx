@@ -54,7 +54,7 @@ export function AllSuperheroes() {
             <div className="d-flex flex-wrap" id={style.cards}>
               {superheroes.map((s: any) => (
                 <div
-                  onClick={() =>
+                  onClick={() => {
                     dispatch(
                       addFavorite({
                         id: s.id,
@@ -63,8 +63,9 @@ export function AllSuperheroes() {
                         img: s.images.sm,
                         powerstats: s.powerstats,
                       })
-                    )
-                  }
+                    );
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
                   className={style.container}
                 >
                   <img className={style.img} src={s.images.sm} />
