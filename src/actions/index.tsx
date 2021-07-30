@@ -4,7 +4,6 @@ export const GET_SUPERHEROES = "GET_SUPERHEROES";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const SEARCH_HEROES = "SEARCH_HEROES";
-export const FILTERED_HEROES = "FILTERED_HEROES";
 
 export function getSuperheroes() {
   return function (dispatch: Dispatch) {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { addFavorite, getSuperheroes } from "../../actions";
+import { addFavorite, getSuperheroes, removeFavorite } from "../../actions";
 import style from "./AllSuperheroes.module.css";
 import logo from "../../assets/logo/logo.svg";
 import { Favorites } from "../Favorites/Favorites";
@@ -55,6 +55,7 @@ export function AllSuperheroes() {
               {superheroes.map((s: any) => (
                 <div
                   onClick={() => {
+                    dispatch(removeFavorite(s.id));
                     dispatch(
                       addFavorite({
                         id: s.id,

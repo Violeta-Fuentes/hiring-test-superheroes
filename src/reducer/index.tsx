@@ -3,7 +3,6 @@ import {
   REMOVE_FAVORITE,
   ADD_FAVORITE,
   SEARCH_HEROES,
-  FILTERED_HEROES,
 } from "../actions/index";
 
 const initialState = {
@@ -35,6 +34,9 @@ export default function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         favorites: state.favorites.filter(
+          (f: IAction) => f.id !== action.payload
+        ),
+        allSuperheroes: state.allSuperheroes.filter(
           (f: IAction) => f.id !== action.payload
         ),
       };
