@@ -8,6 +8,8 @@ import { SearchHeroes } from "../SearchHeroes/SearchHeroes";
 import heart from "../../assets/medium-heart/medium-heart.svg";
 import fist from "../../assets/fist/fist.svg";
 import ContentLoader from "react-content-loader";
+import { FixedSizeList as List } from "react-window";
+import AutoSizer from "react-virtualized-auto-sizer";
 
 export function AllSuperheroes() {
   const dispatch = useDispatch();
@@ -15,6 +17,51 @@ export function AllSuperheroes() {
     (state: RootStateOrAny) => state.allSuperheroes
   );
   const [loader, setLoader] = useState(true);
+
+  const Row = () => (
+    <div>
+      {superheroes.map((s: any) => (
+          <div
+            onClick={() => {
+              dispatch(removeFavorite(s.id));
+              dispatch(
+                addFavorite({
+                  id: s.id,
+                  name: s.name,
+                  realName: s.biography.fullName,
+                  img: s.images.sm,
+                  powerstats: s.powerstats,
+                })
+              );
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className={style.container}
+          >
+            <div className={style.cards}>
+            <img className={style.img} src={s.images.sm} />
+            <img className={style.heart} src={heart} />
+            <th>
+              <h4 className={style.color}>{s.name}</h4>
+              <p id={style.realName}>Real Name: {s.biography.fullName}</p>
+              <img className={style.fist} src={fist} />
+              <span className={style.power}>
+                {((100 *
+                  (s.powerstats.intelligence +
+                    s.powerstats.strength +
+                    s.powerstats.speed +
+                    s.powerstats.durability +
+                    s.powerstats.power +
+                    s.powerstats.combat)) %
+                  600) /
+                  100}
+              </span>
+              <span className={style.power}>/ 10</span>
+            </th>
+            </div>
+          </div>
+      ))}
+    </div>
+  );
 
   useEffect(() => {
     dispatch(getSuperheroes());
@@ -51,45 +98,16 @@ export function AllSuperheroes() {
               <h1 className={style.All}>All Superheroes</h1>
               <SearchHeroes />
             </div>
-            <div className="d-flex flex-wrap" id={style.cards}>
-              {superheroes.map((s: any) => (
-                <div
-                  onClick={() => {
-                    dispatch(removeFavorite(s.id));
-                    dispatch(
-                      addFavorite({
-                        id: s.id,
-                        name: s.name,
-                        realName: s.biography.fullName,
-                        img: s.images.sm,
-                        powerstats: s.powerstats,
-                      })
-                    );
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                  className={style.container}
-                >
-                  <img className={style.img} src={s.images.sm} />
-                  <img className={style.heart} src={heart} />
-                  <th>
-                    <h4 className={style.color}>{s.name}</h4>
-                    <p id={style.realName}>Real Name: {s.biography.fullName}</p>
-                    <img className={style.fist} src={fist} />
-                    <span className={style.power}>
-                      {((100 *
-                        (s.powerstats.intelligence +
-                          s.powerstats.strength +
-                          s.powerstats.speed +
-                          s.powerstats.durability +
-                          s.powerstats.power +
-                          s.powerstats.combat)) %
-                        600) /
-                        100}
-                    </span>
-                    <span className={style.power}>/ 10</span>
-                  </th>
-                </div>
-              ))}
+            <div id={style.cards}>
+              <List
+                layout="horizontal"
+                width={1800}
+                height={700}
+                itemCount={superheroes.length}
+                itemSize={100}
+              >
+                {Row}
+              </List>
             </div>
           </div>
         </div>
