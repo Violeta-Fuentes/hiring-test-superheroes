@@ -19,7 +19,7 @@ export function AllSuperheroes() {
   const [loader, setLoader] = useState(true);
 
   const Row = () => (
-    <div>
+    <div className="d-flex flex-wrap">
       {superheroes.map((s: any) => (
           <div
             onClick={() => {
@@ -100,8 +100,7 @@ export function AllSuperheroes() {
             </div>
             <div id={style.cards}>
               <List
-                layout="horizontal"
-                width={1800}
+                width={1700}
                 height={700}
                 itemCount={superheroes.length}
                 itemSize={100}
