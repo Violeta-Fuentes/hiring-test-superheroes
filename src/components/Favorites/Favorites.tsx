@@ -4,7 +4,7 @@ import heart from "../../assets/medium-heart/medium-heart.svg";
 import filledHeart from "../../assets/medium-filled-heart/medium-filled-heart.svg";
 import bigHeart from "../../assets/big-heart/big-heart.svg";
 import fist from "../../assets/fist/fist.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getSuperheroes, removeFavorite } from "../../actions";
 
 export function Favorites() {
