@@ -10,6 +10,7 @@ import fist from "../../assets/fist/fist.svg";
 import ContentLoader from "react-content-loader";
 import { FixedSizeList as List } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
+import { reactLocalStorage } from "reactjs-localstorage";
 
 export function AllSuperheroes() {
   const dispatch = useDispatch();
@@ -19,25 +20,25 @@ export function AllSuperheroes() {
   const [loader, setLoader] = useState(true);
 
   const Row = () => (
-    <div className="d-flex flex-wrap">
+    <div className="d-flex flex-wrap" id={style.responsive}>
       {superheroes.map((s: any) => (
-          <div
-            onClick={() => {
-              dispatch(removeFavorite(s.id));
-              dispatch(
-                addFavorite({
-                  id: s.id,
-                  name: s.name,
-                  realName: s.biography.fullName,
-                  img: s.images.sm,
-                  powerstats: s.powerstats,
-                })
-              );
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className={style.container}
-          >
-            <div className={style.cards}>
+        <div
+          onClick={() => {
+            dispatch(removeFavorite(s.id));
+            dispatch(
+              addFavorite({
+                id: s.id,
+                name: s.name,
+                realName: s.biography.fullName,
+                img: s.images.sm,
+                powerstats: s.powerstats,
+              })
+            );
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className={style.container}
+        >
+          <div className={style.cards}>
             <img className={style.img} src={s.images.sm} />
             <img className={style.heart} src={heart} />
             <th>
@@ -57,8 +58,8 @@ export function AllSuperheroes() {
               </span>
               <span className={style.power}>/ 10</span>
             </th>
-            </div>
           </div>
+        </div>
       ))}
     </div>
   );

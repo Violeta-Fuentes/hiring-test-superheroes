@@ -6,6 +6,8 @@ import bigHeart from "../../assets/big-heart/big-heart.svg";
 import fist from "../../assets/fist/fist.svg";
 import { useState } from "react";
 import { getSuperheroes, removeFavorite } from "../../actions";
+import { reactLocalStorage } from "reactjs-localstorage";
+import { useEffect } from "react";
 
 export function Favorites() {
   const dispatch = useDispatch();
@@ -15,6 +17,11 @@ export function Favorites() {
   const handleClick = () => {
     setActive(!active);
   };
+
+  useEffect(() => {
+    reactLocalStorage.set("liked", JSON.stringify(liked));
+    reactLocalStorage.get("liked");
+  }, [liked]);
 
   return (
     <div className={style.accordion}>
@@ -47,12 +54,12 @@ export function Favorites() {
                     <img className={style.fist} src={fist} />
                     <span className={style.power}>
                       {((100 *
-                        (l.powerstats.intelligence +
-                          l.powerstats.strength +
-                          l.powerstats.speed +
-                          l.powerstats.durability +
-                          l.powerstats.power +
-                          l.powerstats.combat)) %
+                        (l.powerstats?.intelligence +
+                          l.powerstats?.strength +
+                          l.powerstats?.speed +
+                          l.powerstats?.durability +
+                          l.powerstats?.power +
+                          l.powerstats?.combat)) %
                         600) /
                         100}
                     </span>

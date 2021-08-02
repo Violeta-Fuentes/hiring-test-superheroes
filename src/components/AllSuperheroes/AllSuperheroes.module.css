@@ -106,3 +106,8 @@
 .fist {
   margin-left: 0.5rem;
 }
+
+#responsive{
+  width: 200rem;
+  -ms-overflow-style: none;
+}
